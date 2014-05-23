@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+sudo -l sudo || exit
+sudo yum install -y \
+  axel \
+  emacs \
+  tree \
+  wget \
+
+mkdir -p ~/.dotfiles.bak
+cp -Rv .profile* .bash* .logout* .emacs* .git{i,c}* ~/.dotfiles.bak
+cp -Rv .bash* .dir* .emacs* .git{c,i}* ~
+source ~/.bashrc
