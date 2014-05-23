@@ -8,6 +8,9 @@ sudo yum install -y \
   wget \
 
 mkdir -p ~/.dotfiles.bak
-cp -Rv .profile* .bash* .logout* .emacs* .git{i,c}* ~/.dotfiles.bak
-cp -Rv .bash* .dir* .emacs* .git{c,i}* ~
+: $(
+  cd ~
+  tar -c --exclude .dotfiles.bak . | tar -x -C .dotfiles.bak
+)
+tar -c --exclude .ssh . | tar -x -C ~
 source ~/.bashrc
