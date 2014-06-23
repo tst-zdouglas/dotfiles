@@ -8,6 +8,8 @@
 [alias]
     a = add
     br = branch
+    brd = "!f () { git has $1 | grep -q master && git br -d $1 && exit 0 || echo $1 not merged to master && exit 1; }; f"
+    brdf = "!f () { git brd $1 || git br -D $1; }; f"
     cfg = "!${EDITOR:-emacs -nw} ~/.gitconfig"
     ci = commit
     cim = commit -m
@@ -22,6 +24,7 @@
     lga = "!git --no-pager log --abbrev --decorate --oneline --graph --all $*"
     lgna = "!git --no-pager log --abbrev --decorate --oneline --graph --all $*"
     lpr = "!git ls-remote $1 -h *$2* -"
+    m = merge
     st = status -s -uno --porcelain
     staged = diff --staged
     stt = status
